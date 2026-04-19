@@ -1,4 +1,3 @@
 --cpp useless/dump
---library yhaxen
---library hxRaylib
+--library raylib-hx
 -cp src
