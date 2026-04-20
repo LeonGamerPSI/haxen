@@ -5,7 +5,7 @@ import raylib.Raylib.*;
 import raylib.Types;
 
 /**
- * Useful for games and stuff. Used internally too.
+ * HaxenG is a static class that contains global variables and signals for the Haxen Engine. It allows you to set the default width and height of the game window, the frame rate, and the clear color. It also provides signals for pre-draw, on-draw, and post-draw events that you can use to execute code at different stages of the drawing process.
  */
 class HaxenG
 {
@@ -43,6 +43,27 @@ class HaxenG
 	 * Dispatched after drawing.
 	 */
 	public static var postDraw:Signal<Void->Void> = new Signal<Void->Void>();
+
+	/**
+	 * Dispatched on update.
+	 * @param deltaTime The time in seconds since the last update. You can use this to make your game frame rate independent.
+	 */
+	public static var onUpdate:Signal<Float->Void> = new Signal<Float->Void>();
+
+	/**
+	 * Dispatched when the engine starts. You can use this to execute code after the engine has been initialized.
+	 */
+	public static var onStart:Signal<Void->Void> = new Signal<Void->Void>();
+	/**
+	 * Dispatched when the engine stops. You can use this to execute code before the engine is closed.
+	 */
+	public static var onStop:Signal<Void->Void> = new Signal<Void->Void>();
+	/**
+	 * Clear color for the background. You can change this to set a different clear color.
+	 */
+	public static var clearColor:Color = BLACK;
+	
+	
 
 	@:noCompletion
 	static function set_frameRate(value:Int):Int

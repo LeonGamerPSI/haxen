@@ -2,6 +2,9 @@ package haxen.utils;
 
 import haxe.Constraints.Function;
 
+/**
+ * A simple signal class that allows you to add callbacks that will be executed when the signal is dispatched. You can add callbacks that will be executed only once or every time the signal is dispatched.
+ */
 class Signal<T:Function>
 {
 	private var addOncearray:Array<T> = [];

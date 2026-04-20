@@ -17,15 +17,18 @@ class HaxenEngine
 			screenWidth = HaxenG.defaultwidth;
 
 		if (height == 0)
-			screenWidth = HaxenG.defaultheight;
+			screenHeight = HaxenG.defaultheight;
 
 		InitWindow(screenWidth, screenHeight, title);
 		InitAudioDevice();
 		HaxenG.initializedEngine = true;
 
+		HaxenG.onDraw.addCallback(() -> ClearBackground(HaxenG.clearColor));
+		HaxenG.onStart.dispatch();
 		// engine mainloop
 		while (!WindowShouldClose())
 		{
+
 			HaxenG.preDraw.dispatch();
 
 			BeginDrawing();
@@ -34,7 +37,9 @@ class HaxenEngine
 			EndDrawing();
 			HaxenG.postDraw.dispatch();
 		}
-
+	
+		HaxenG.onStop.dispatch();
+		CloseAudioDevice();
 		CloseWindow();
 	}
 }
